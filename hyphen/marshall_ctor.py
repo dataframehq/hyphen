@@ -366,10 +366,13 @@ def make_interpreter(ways_to_interpret):
         assert obj.hstype.head_ll == cls.hs_tycon
         if len(obj.hstype.fvs) == 0:
             for co_dacon, resulting_class in ways_to_interpret:
-                if not hslowlevel.from_haskell_Bool(
+                try:
+                    if not hslowlevel.from_haskell_Bool(
                         hslowlevel.apply(
                             hs_null, hslowlevel.apply(co_dacon, obj))):
-                    return hslowlevel.HsObjRaw.__new__(resulting_class, obj)
+                        return hslowlevel.HsObjRaw.__new__(resulting_class, obj)
+                except:
+                    pass
         return hslowlevel.HsObjRaw.__new__(cls, obj)
     return interpret
 

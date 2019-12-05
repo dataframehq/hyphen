@@ -1,7 +1,17 @@
 
-resolver: lts-6.35
+resolver: lts-10.4
 packages:
 - .
+- 'queryparser'
+- 'queryparser/demo'
+- 'queryparser/dialects/vertica'
+- 'queryparser/dialects/hive'
+- 'queryparser/dialects/presto'
 
-arch: i386
-# arch: x86_64
+extra-deps: [ 'test-framework-quickcheck-0.3.0'
+            , 'file-location-0.4.9.1'
+            , 'fixed-list-0.1.6'
+            ]
+
+# arch: i386
+arch: x86_64
